@@ -11,6 +11,7 @@ import com.fitness.model.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class EmployeeService {
@@ -29,6 +30,10 @@ public class EmployeeService {
 
     public boolean updateEmployee(Employee employee) {
         return employeeDAO.update(employee);
+    }
+
+    public Optional<Employee> getTrainer(Long id) {
+        return employeeDAO.findById(id);
     }
 
     public List<Employee> getAllEmployees() {

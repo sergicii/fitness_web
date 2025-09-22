@@ -1,6 +1,5 @@
 package com.fitness.model.service;
 
-import com.fitness.enums.MemberShipCategory;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +14,7 @@ public class Membership {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    private MemberShipCategory category;
-
+    private String category;
     private Duration duration;
     private Integer sessionPersonalized;
     private Integer sessionGroup;

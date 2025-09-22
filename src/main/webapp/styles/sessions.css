@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 90vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.filters-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.options-container header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.options-list {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    overflow-x: scroll;
+    padding: 15px 0;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+    min-width: 230px;
+    max-width: 400px;
+    aspect-ratio: 1 /  1.1;
+    border: 1px solid black;
+    padding: 20px;
+    text-align: start;
+}
+
+.option:nth-child(n) {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+}

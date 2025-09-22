@@ -1,5 +1,6 @@
 package com.fitness.model.business;
 
+import com.fitness.enums.SessionType;
 import com.fitness.model.user.Employee;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,16 +20,18 @@ public class Session {
     private LocalDateTime end;
     private Integer maxParticipants;
     private String sessionReport;
+    @Enumerated(EnumType.STRING)
+    private SessionType type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Training training;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Site site;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Employee trainer;
 
-    @OneToMany(mappedBy = "session")
+    @OneToMany(mappedBy = "session", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Reservation> reservations;
 }

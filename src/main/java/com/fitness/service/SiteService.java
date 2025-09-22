@@ -14,16 +14,12 @@ public class SiteService {
 
     public SiteService() {
         if (getAllSites().isEmpty()) {
-            createSites().forEach(siteDAO::create);
+            createSites().forEach(this::addSite);
         }
     }
 
-    public boolean addSite(Site site) {
-        return siteDAO.create(site);
-    }
-
-    public boolean updateSite(Site site) {
-        return siteDAO.update(site);
+    public void addSite(Site site) {
+        siteDAO.create(site);
     }
 
     public Optional<Site> getSite(Long id) {

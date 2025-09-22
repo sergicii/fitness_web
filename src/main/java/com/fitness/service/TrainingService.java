@@ -6,6 +6,7 @@ import com.fitness.model.business.Training;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Optional;
 
 public class TrainingService {
     private final TrainingDAO trainingDAO = DAOFactory.getDAO(TrainingDAO.class);
@@ -14,6 +15,10 @@ public class TrainingService {
         if (getAllTrainings().isEmpty()) {
             createTrainings().forEach(trainingDAO::create);
         }
+    }
+
+    public Optional<Training> getTraining(long id) {
+        return trainingDAO.findById(id);
     }
 
     public List<Training> getAllTrainings() {

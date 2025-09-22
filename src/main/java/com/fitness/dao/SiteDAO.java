@@ -25,14 +25,10 @@ public class SiteDAO {
         return JPAInitializer.executeInsideTransaction(em -> em.persist(site));
     }
 
-    public boolean update(Site site) {
-        return JPAInitializer.executeInsideTransaction(em -> em.merge(site));
-    }
-
     public Optional<Site> findById(Long id) {
         try (EntityManager em = emf.createEntityManager()) {
-            Site training = em.find(Site.class, id);
-            return Optional.ofNullable(training);
+            Site site = em.find(Site.class, id);
+            return Optional.ofNullable(site);
         } catch (Exception e) {
             logger.error("Error al buscar lugar por ID: {}", id, e);
             return Optional.empty();

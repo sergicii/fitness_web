@@ -27,6 +27,6 @@ public abstract class Person {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private User user;
 }
