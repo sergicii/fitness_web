@@ -1,13 +1,14 @@
 package com.fitness.model.business;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.Duration;
-import java.util.List;
 
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Training {
@@ -18,7 +19,5 @@ public class Training {
     private String description;
     private Duration duration;
     private Integer maxParticipants;
-
-    @OneToMany(mappedBy = "training")
-    private List<Session> sessions;
+    private Boolean state;
 }

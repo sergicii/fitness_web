@@ -1,0 +1,21 @@
+<!-- src/main/resources/logback.xml -->
+
+<configuration>
+
+    <!-- Define un "appender" para enviar logs a la consola -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- Define el formato del mensaje de log -->
+            <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configuración raíz: todos los logs de nivel INFO o superior se enviarán a STDOUT -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- Opcional: Puedes hacer que Hibernate sea menos "ruidoso" -->
+    <logger name="org.hibernate" level="warn" />
+
+</configuration>

@@ -21,7 +21,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 
             <!-- `update` intentará actualizar el esquema si hay cambios en las entidades. Es más seguro que `create-drop` para desarrollo continuo. -->
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
             <!-- Muestra el SQL que Hibernate ejecuta en la consola -->
             <property name="hibernate.show_sql" value="true"/>
