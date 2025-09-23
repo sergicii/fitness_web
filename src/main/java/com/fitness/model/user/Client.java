@@ -5,9 +5,11 @@ import com.fitness.model.monitoring.Incident;
 import com.fitness.model.service.Contracted;
 import com.fitness.model.monitoring.Sanction;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,15 +17,15 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Client extends Person {
-    @OneToMany(mappedBy = "client")
-    private List<Contracted> contracted;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Contracted> contracted = new ArrayList<>();
 
-    @OneToMany(mappedBy = "client")
-    private List<Sanction> sanction;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Sanction> sanction = new ArrayList<>();
 
-    @OneToMany(mappedBy = "client")
-    private List<Reservation> reservations;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Reservation> reservations = new ArrayList<>();
 
-    @OneToMany(mappedBy = "client")
-    private List<Incident> incidents;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Incident> incidents = new ArrayList<>();
 }

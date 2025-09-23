@@ -3,6 +3,8 @@ package com.fitness.controller;
 import com.fitness.dao.UserDAO;
 import com.fitness.enums.UserRol;
 import com.fitness.factory.ServiceFactory;
+import com.fitness.model.user.Client;
+import com.fitness.model.user.Employee;
 import com.fitness.model.user.User;
 import com.fitness.service.UserService;
 import jakarta.servlet.ServletException;
@@ -38,16 +40,36 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        UserRol rol = userService.login(email, password);
+        Optional<User> userOptional = userService.login(email, password);
 
-        if (rol == null) {
+        // 2. Verificamos si el Optional contiene un usuario
+        if (userOptional.isEmpty()) {
             req.setAttribute("error", "Correo o contraseña incorrectos.");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
             return;
         }
 
-        HttpSession session = req.getSession();
-        session.setAttribute("loggedInUser", rol.toString());
-        resp.sendRedirect(req.getContextPath() + "/home");
+        if (userOptional.get().getRol().equals(UserRol.CLIENT)) {
+            Optional<Client> client = userService.getClientFromUser(userOptional.get());
+            HttpSession session = req.getSession();
+            client.ifPresent(value -> session.setAttribute("loggedInUser", value));
+            resp.sendRedirect(req.getContextPath() + "/client");
+            return;
+        }
+
+        Optional<Employee> employee = userService.getEmployeeFromUser(userOptional.get());
+        if (employee.isPresent()) {
+            String targetUrl = switch (employee.get().getArea()) {
+                case TRAINERS -> "/trainer";
+                case OPERACIONES -> "/operation";
+                case VENTAS -> "/commercial";
+                default -> "/home";
+            };
+
+            HttpSession session = req.getSession();
+            session.setAttribute("loggedInUser", employee.get());
+
+            resp.sendRedirect(req.getContextPath() + targetUrl);
+        }
     }
 }

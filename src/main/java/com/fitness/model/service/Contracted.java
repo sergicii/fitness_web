@@ -24,12 +24,9 @@ public class Contracted {
 
     private String note;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Employee seller;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Membership membership;
 }

@@ -23,9 +23,6 @@ public class Incident {
     @Enumerated(EnumType.STRING)
     private IncidentState state;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Employee employee;
 }

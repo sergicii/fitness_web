@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum ReservationState {
-    FALTA ("Falta"),
+    FALTA("Falta"),
     ASISTENCIA("Asistencia");
 
     private final String value;

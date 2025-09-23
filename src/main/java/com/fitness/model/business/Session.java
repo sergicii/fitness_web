@@ -3,13 +3,15 @@ package com.fitness.model.business;
 import com.fitness.enums.SessionType;
 import com.fitness.model.user.Employee;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @Entity
 public class Session {
@@ -33,5 +35,6 @@ public class Session {
     private Employee trainer;
 
     @OneToMany(mappedBy = "session", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Reservation> reservations;
+    @ToString.Exclude
+    private List<Reservation> reservations = new ArrayList<>();
 }

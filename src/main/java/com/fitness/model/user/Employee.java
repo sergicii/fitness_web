@@ -21,10 +21,4 @@ public class Employee extends Person {
 
     @OneToMany(mappedBy = "trainer")
     private List<Session> sessions;
-
-    @OneToMany(mappedBy = "employee")
-    private List<Incident> incidents;
-
-    @OneToMany(mappedBy = "seller")
-    private List<Contracted> contracted;
 }

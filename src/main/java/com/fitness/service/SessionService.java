@@ -27,6 +27,15 @@ public class SessionService {
         return sessionDAO.update(verificateSession);
     }
 
+    public boolean updateReport(Long id, String report) {
+        Optional<Session> session = getSession(id);
+        if (session.isPresent()) {
+            session.get().setSessionReport(report);
+            return sessionDAO.update(session.get());
+        }
+        return false;
+    }
+
     private Session createSession(Session session, Employee trainer, Site site, Training training) {
         LocalDateTime start = session.getStart();
         LocalDateTime end = start.plus(training.getDuration());

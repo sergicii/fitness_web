@@ -10,6 +10,7 @@ import com.fitness.service.EmployeeService;
 import com.fitness.service.SessionService;
 import com.fitness.service.SiteService;
 import com.fitness.service.TrainingService;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,8 +21,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@WebServlet("/organize_session")
-public class OrganizeSessionsServlet extends HttpServlet {
+@WebServlet("/operation")
+public class OperationServlet extends HttpServlet {
     private final TrainingService trainingService = ServiceFactory.getService(TrainingService.class);
     private final SiteService siteService = ServiceFactory.getService(SiteService.class);
     private final EmployeeService employeeService = ServiceFactory.getService(EmployeeService.class);
@@ -34,7 +35,7 @@ public class OrganizeSessionsServlet extends HttpServlet {
         req.setAttribute("trainers", employeeService.getAllTrainers());
         req.setAttribute("sessions", sessionService.getAllSession());
         req.setAttribute("sessionTypes", SessionType.values());
-        req.getRequestDispatcher("/organize_sessions.jsp").forward(req, resp);
+        req.getRequestDispatcher("/operation_dashboard.jsp").forward(req, resp);
     }
 
     @Override
@@ -90,6 +91,6 @@ public class OrganizeSessionsServlet extends HttpServlet {
         } catch (Exception e) {
             req.getSession().setAttribute("error", "Error procesando la solicitud: " + e.getMessage());
         }
-        resp.sendRedirect(req.getContextPath() + "/organize_session");
+        resp.sendRedirect(req.getContextPath() + "/operation");
     }
 }
